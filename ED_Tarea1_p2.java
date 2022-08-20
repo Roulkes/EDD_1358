@@ -14,13 +14,16 @@ package tareaRedes;
 /**
  * @author Tenorio Castilla Carlos Yael (Torrente)
  */
-import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
@@ -34,9 +37,13 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     private JFileChooser archivos;
     private JTable excel;
     private JButton boton1, boton2, boton3;
-    String filas[][] = {{"", "", "", "", "", ""}, {"", "", "", "", "", ""}};
-    String columnas[] = {"","","","","",""};
     private FileNameExtensionFilter filtro;
+    ArrayList<ArrayList<String>> CadenaGuardadora = new ArrayList<ArrayList<String>>();
+    DefaultTableModel Modelo;
+    //public static final String separador = ",";
+    //public static final String quote = "\"";
+    String filas[][] = {{"", "", "", "", "", ""}, {"", "", "", "", "", ""}};
+    String columnas[] = {"", "", "", "", "", ""};
     String NombreI = "", texto = "";
 
     public ED_Tarea1_p2() {
@@ -142,7 +149,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         add(scroll1);
 
         excel = new JTable(filas, columnas);
-        area1.setEditable(false);
         scroll2 = new JScrollPane(excel);
         scroll2.setBounds(5, 140, 975, 372);
         scroll2.setVisible(false);
@@ -268,47 +274,48 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             //Buscador de archivo
             File fichero;
             archivos = new JFileChooser();
-            archivos.showOpenDialog(null);
-            archivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            archivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             filtro = new FileNameExtensionFilter("Archivos .csv", "csv");
             archivos.setFileFilter(filtro);
+            //Filtros siempre ponerlos antes de crear la ventana del "FileChooser".
+            archivos.showOpenDialog(null);
             fichero = archivos.getSelectedFile();
+            Path Ruta = fichero.toPath(); //Convierte el archivo en una ruta para leerlo.
 
             //Muestra la ruta del archivo
             archi.setText("Ruta actual: " + archivos.getCurrentDirectory());
 
             try {
-                Scanner slector;
-                slector = new Scanner(fichero);
-                String line = slector.nextLine();
-                String[] columnas = line.split(",");
-
-            } catch (FileNotFoundException e) {
-
-            }
-            //Lee el archivo.
-            /*for (int columna = 0; columna < 16 - 1; columna++) {
-                columnas = +
-            }
-            for (int externo = 0; externo < 5 - 1; externo++) {
-                for (int interno = 0; interno < 5 - 1; interno++) {
-                    columna[externo][interno] = SúperGenerador.nextInt(20);
-                }
-            }*/
- /*try {
-                if (fichero != null) {
-                    FileReader mostrar = new FileReader(fichero);
-                    BufferedReader leer = new BufferedReader(mostrar);
-                    for (int externo = 0; externo < 5 - 1; externo++) {
-                        for (int interno = 0; interno < 5 - 1; interno++) {
-                            columna[externo][interno] = leer.read();
-                        }
+                BufferedReader lector = Files.newBufferedReader(Ruta);
+                String leido;
+                while ((leido = lector.readLine()) != null) { //Leerá linea a linea hasta que no haya más que leer.
+                    String[] OtraGuardadora = leido.split(","); //Guarda todo dividido por comas.
+                    ArrayList<String> Pasaje = new ArrayList<String>(); //Crea un
+                    //Arraylist que guarda una linea completa, la pasa al Array
+                    //que guarda todo (con el for mejorado) y posteriormente 
+                    //lo borra para guardar una nueva lista.
+                    for (String dato : OtraGuardadora) {
+                        Pasaje.add(dato);
                     }
+                    CadenaGuardadora.add(Pasaje);
                 }
             } catch (IOException e) {
+            }
 
-            }*/
+            //LLenar la tabla.
+            for (int i = 0; i < CadenaGuardadora.size(); i++) {
+                Modelo = new DefaultTableModel(i, CadenaGuardadora.size());
+                excel.setModel(Modelo);
 
+            }
+
+            TableModel llenador = excel.getModel();
+            for (int j = 0; j < CadenaGuardadora.size(); j++) {
+                llenador.setValueAt(CadenaGuardadora.get(j), j, j);
+                for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                    llenador.setValueAt(CadenaGuardadora.get(k + 1), k, j);//Valor del Array, Fila, Columna
+                }
+            }
         }
         if (d.getSource() == boton2) {
             ED_Tarea1 inicio1 = new ED_Tarea1();
