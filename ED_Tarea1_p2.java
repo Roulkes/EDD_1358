@@ -31,20 +31,23 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     private JTextArea area1;
     private JScrollPane scroll1, scroll2;
     private JMenuBar menuB, menuB2;
-    private JMenu menuS1, menuS2, menuS3, menus4;
+    private JMenu menuS1, menuS2, menuS3, menuS4, menuS5;
     private JMenuItem menuI1, menuI2, menuI3, menuI4, menuI5;
+    private JMenuItem menuIB1, menuIB2, menuIB3;
     private JSeparator dividendo;
     private JFileChooser archivos;
     private JTable excel;
-    private JButton boton1, boton2, boton3;
+    private JButton boton1, boton2, boton3, boton4;
+    private JPopupMenu menuboton;
     private FileNameExtensionFilter filtro;
-    ArrayList<ArrayList<String>> CadenaGuardadora = new ArrayList<ArrayList<String>>();
+    ArrayList<ArrayList<String>> CadenaGuardadora = new ArrayList();
     DefaultTableModel Modelo;
-    //public static final String separador = ",";
-    //public static final String quote = "\"";
     String filas[][] = {{"", "", "", "", "", ""}, {"", "", "", "", "", ""}};
     String columnas[] = {"", "", "", "", "", ""};
     String NombreI = "", texto = "";
+    Point Mouse = MouseInfo.getPointerInfo().getLocation();
+    int x = Mouse.x;
+    int y = Mouse.y;
 
     public ED_Tarea1_p2() {
         setLayout(null);
@@ -128,6 +131,15 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         add(boton1);
         boton1.addActionListener(this);
 
+        boton4 = new JButton("Opciones");
+        boton4.setBounds(780, 134, 180, 20);
+        boton4.setFont(new Font("OCR A Extended", 0, 14));
+        boton4.setForeground(new Color(255, 255, 255));
+        boton4.setBackground(new Color(60, 60, 60));
+        boton4.setVisible(false);
+        add(boton4);
+        boton4.addActionListener(this);
+
         area1 = new JTextArea();
         area1.setEditable(false);
         area1.setText("La secretaría del Máximo Senado de la República y "
@@ -150,7 +162,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         excel = new JTable(filas, columnas);
         scroll2 = new JScrollPane(excel);
-        scroll2.setBounds(5, 140, 975, 372);
+        scroll2.setBounds(5, 185, 975, 327);
         scroll2.setVisible(false);
         add(scroll2);
 
@@ -186,6 +198,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         if (d.getSource() == menuI1) {
             titulo.setText("Urbenia | Información");
             boton1.setVisible(false);
+            boton4.setVisible(false);
             archi.setVisible(false);
             scroll1.setVisible(true);
             scroll2.setVisible(false);
@@ -210,6 +223,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archi.setForeground(new Color(0, 0, 0));
             boton1.setForeground(new Color(0, 0, 0));
             boton1.setBackground(new Color(255, 255, 255));
+            boton4.setForeground(new Color(0, 0, 0));
+            boton4.setBackground(new Color(255, 255, 255));
             area1.setForeground(new Color(0, 0, 0));
             area1.setBackground(new Color(255, 255, 255));
         }
@@ -218,8 +233,10 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             fondo.setBackground(new Color(48, 48, 48));
             titulo.setForeground(new Color(255, 255, 255));
             archi.setForeground(new Color(255, 255, 255));
-            boton1.setForeground(Color.WHITE);
+            boton1.setForeground(new Color(255, 255, 255));
             boton1.setBackground(new Color(60, 60, 60));
+            boton4.setForeground(new Color(255, 255, 255));
+            boton4.setBackground(new Color(60, 60, 60));
             area1.setForeground(new Color(255, 255, 255));
             area1.setBackground(new Color(60, 60, 60));
 
@@ -227,6 +244,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         if (d.getSource() == menuI4) {
             titulo.setText("Urbenia | Créditos");
+            boton1.setVisible(false);
+            boton4.setVisible(false);
             scroll1.setVisible(true);
             archi.setVisible(false);
             scroll2.setVisible(false);
@@ -256,7 +275,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                     + "\n\n - Richard Sapper"
                     + " por crear ThinkPad.");
 
-            boton1.setVisible(false);
         }
 
         if (d.getSource() == menuI5) {
@@ -265,6 +283,19 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             scroll1.setVisible(false);
             scroll2.setVisible(true);
             boton1.setVisible(true);
+            boton4.setVisible(true);
+        }
+
+        if (d.getSource() == menuIB1) {
+
+        }
+
+        if (d.getSource() == menuIB2) {
+
+        }
+
+        if (d.getSource() == menuIB3) {
+
         }
         //Fin parte de menús
 
@@ -279,44 +310,74 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archivos.setFileFilter(filtro);
             //Filtros siempre ponerlos antes de crear la ventana del "FileChooser".
             archivos.showOpenDialog(null);
+
             fichero = archivos.getSelectedFile();
             Path Ruta = fichero.toPath(); //Convierte el archivo en una ruta para leerlo.
 
             //Muestra la ruta del archivo
             archi.setText("Ruta actual: " + archivos.getCurrentDirectory());
 
+            TableModel vaciador = excel.getModel();
+            for (int j = 0; j <= CadenaGuardadora.size(); j++) { //+4
+                for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                    //Imprime en la primer columna los datos del Outter Array.
+                    vaciador.setValueAt(CadenaGuardadora.remove(k).remove(j), k, j);//Valor del Array, Fila k, Columna j
+                }
+            }
             try {
                 BufferedReader lector = Files.newBufferedReader(Ruta);
                 String leido;
                 while ((leido = lector.readLine()) != null) { //Leerá linea a linea hasta que no haya más que leer.
                     String[] OtraGuardadora = leido.split(","); //Guarda todo dividido por comas.
-                    ArrayList<String> Pasaje = new ArrayList<String>(); //Crea un
+                    ArrayList<String> Pasaje = new ArrayList(); //Crea un
                     //Arraylist que guarda una linea completa, la pasa al Array
                     //que guarda todo (con el for mejorado) y posteriormente 
                     //lo borra para guardar una nueva lista.
                     for (String dato : OtraGuardadora) {
-                        Pasaje.add(dato);
+                        Pasaje.add(dato); //Inner
                     }
-                    CadenaGuardadora.add(Pasaje);
+                    CadenaGuardadora.add(Pasaje);//Outer
                 }
             } catch (IOException e) {
             }
 
             //LLenar la tabla.
-            for (int i = 0; i < CadenaGuardadora.size(); i++) {
-                Modelo = new DefaultTableModel(i, CadenaGuardadora.size());
+            for (int i = 0; i < CadenaGuardadora.size() + 1; i++) { //Crea filas.
+                Modelo = new DefaultTableModel(i, CadenaGuardadora.size() - 4);
+                //el +1 y el -4 están únicamente para resolver el archivo presenciaredes.csv
                 excel.setModel(Modelo);
 
             }
 
             TableModel llenador = excel.getModel();
-            for (int j = 0; j < CadenaGuardadora.size(); j++) {
-                llenador.setValueAt(CadenaGuardadora.get(j), j, j);
+            for (int j = 0; j <= CadenaGuardadora.size(); j++) { //+4
                 for (int k = 0; k < CadenaGuardadora.size(); k++) {
-                    llenador.setValueAt(CadenaGuardadora.get(k + 1), k, j);//Valor del Array, Fila, Columna
+                    //Imprime en la primer columna los datos del Outter Array.
+                    llenador.setValueAt(CadenaGuardadora.get(k).get(j), k, j);//Valor del Array, Fila k, Columna j
                 }
             }
+
         }
+
+        String boton = d.getActionCommand();
+        if (boton.equals("Opciones")) {
+            //Menu de Botón4
+            menuboton = new JPopupMenu();
+            menuS4 = new JMenu("Diferencia de Seguidores");
+            menuIB1 = new JMenuItem("Twitter");
+            menuS4.add(menuIB1);
+            menuIB2 = new JMenuItem("Diferencia de Visualizaciones de Youtube");
+            menuIB3 = new JMenuItem("Promedio de crecimiento (Twitter y Facebook)");
+            menuboton.add(menuS4);
+            menuboton.add(menuIB2);
+            menuboton.add(menuIB3);
+
+            //menuboton.show(boton4, x, y);
+            menuboton.show(boton4, boton4.getBounds().x, boton4.getBounds().y);
+            //MouseListener?????
+            //Fin de Botón4
+        }
+
         if (d.getSource() == boton2) {
             ED_Tarea1 inicio1 = new ED_Tarea1();
             inicio1.setBounds(0, 0, 300, 300);
