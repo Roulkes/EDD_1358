@@ -31,7 +31,6 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Bienvenido");
         getContentPane().setBackground(new Color(48, 48, 48));
-        //setIconImage(new ImageIcon(getClass().getResource("C:\\Users\\yael_\\OneDrive\\Documentos\\NetBeansProjects\\Tarea1_Ejercicio_Redes_Sociales\\src\\main\\java\\tareaRedes\\icono.png")).getImage());
 
         ImageIcon URB = new ImageIcon("C:\\Users\\yael_\\OneDrive\\"
                 + "Documentos\\NetBeansProjects\\"

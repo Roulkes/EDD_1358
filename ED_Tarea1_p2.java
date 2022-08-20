@@ -19,6 +19,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 //import javax.swing.table.DefaultTableModel;
 
 public class ED_Tarea1_p2 extends JFrame implements ActionListener {
@@ -35,8 +36,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     private JButton boton1, boton2, boton3;
     String filas[][] = {{"", "", "", "", "", ""}, {"", "", "", "", "", ""}};
     String columnas[] = {"","","","","",""};
-    //DefaultTableModel modeloTabla;
-    //private FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos .csv", "csv");
+    private FileNameExtensionFilter filtro;
     String NombreI = "", texto = "";
 
     public ED_Tarea1_p2() {
@@ -270,7 +270,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archivos = new JFileChooser();
             archivos.showOpenDialog(null);
             archivos.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            //archivos.setFileFilter(filtro);
+            filtro = new FileNameExtensionFilter("Archivos .csv", "csv");
+            archivos.setFileFilter(filtro);
             fichero = archivos.getSelectedFile();
 
             //Muestra la ruta del archivo
