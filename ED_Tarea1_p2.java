@@ -42,8 +42,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     private FileNameExtensionFilter filtro;
     ArrayList<ArrayList<String>> CadenaGuardadora = new ArrayList();
     DefaultTableModel Modelo;
-    String filas[][] = {{"", "", "", "", "", ""}, {"", "", "", "", "", ""}};
-    String columnas[] = {"", "", "", "", "", ""};
+    String filas[][] = {{""}, {""}};
+    String columnas[] = {""};
     String NombreI = "", texto = "";
     Point Mouse = MouseInfo.getPointerInfo().getLocation();
     int x = Mouse.x;
@@ -264,7 +264,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                     + "\n\n- Elaborado desde:"
                     + "\n - 17 de agosto de 2022"
                     + "\n\n- Terminado el:"
-                    + "\n - (No se va a terminar)"
+                    + "\n - Entregado el 24 de agosto de 2022 (Pero no dejará "
+                    + "de actualizarse.)"
                     + "\n\n- Creditos adicionales a:"
                     + "\n\n - James Gosling"
                     + " por crear Java."
@@ -286,15 +287,28 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton4.setVisible(true);
         }
 
-        if (d.getSource() == menuIB1) {
+        if (d.getSource() == menuIB1) { //Diferencia de seguidores de Twitter.
+
+            for (int Sup = 0; Sup < CadenaGuardadora.size(); Sup++) {
+                for (int Baj = 0; Baj < CadenaGuardadora.size(); Baj++) {
+                    if (CadenaGuardadora.contains("TWITTER")) {
+                        if (CadenaGuardadora.contains("SEGUIDORES")) {
+                            if (CadenaGuardadora.contains("ENERO")) {
+                                if (CadenaGuardadora.contains("JUNIO")) {
+                                    System.out.println("Si sirve");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (d.getSource() == menuIB2) { // Diferencia de visualizacionesde YT.
 
         }
 
-        if (d.getSource() == menuIB2) {
-
-        }
-
-        if (d.getSource() == menuIB3) {
+        if (d.getSource() == menuIB3) { //Promedio de crecimiento.
 
         }
         //Fin parte de menús
@@ -317,18 +331,20 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             //Muestra la ruta del archivo
             archi.setText("Ruta actual: " + archivos.getCurrentDirectory());
 
+            //Existe un error/bug/???? en donde se tiene que seleccionar dos veces el archivo para que se muestre completo.
             TableModel vaciador = excel.getModel();
-            for (int j = 0; j <= CadenaGuardadora.size(); j++) { //+4
+            for (int j = 0; j <= CadenaGuardadora.size(); j++) {
                 for (int k = 0; k < CadenaGuardadora.size(); k++) {
-                    //Imprime en la primer columna los datos del Outter Array.
                     vaciador.setValueAt(CadenaGuardadora.remove(k).remove(j), k, j);//Valor del Array, Fila k, Columna j
                 }
             }
+
             try {
                 BufferedReader lector = Files.newBufferedReader(Ruta);
                 String leido;
                 while ((leido = lector.readLine()) != null) { //Leerá linea a linea hasta que no haya más que leer.
-                    String[] OtraGuardadora = leido.split(","); //Guarda todo dividido por comas.
+                    //String[] OtraGuardadora = leido.split(","); //Guarda todo dividido por comas.
+                    String[] OtraGuardadora = leido.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     ArrayList<String> Pasaje = new ArrayList(); //Crea un
                     //Arraylist que guarda una linea completa, la pasa al Array
                     //que guarda todo (con el for mejorado) y posteriormente 
@@ -343,10 +359,11 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
             //LLenar la tabla.
             for (int i = 0; i < CadenaGuardadora.size() + 1; i++) { //Crea filas.
-                Modelo = new DefaultTableModel(i, CadenaGuardadora.size() - 4);
-                //el +1 y el -4 están únicamente para resolver el archivo presenciaredes.csv
-                excel.setModel(Modelo);
-
+                for (int l = 0; l < CadenaGuardadora.size(); l++) {
+                    Modelo = new DefaultTableModel(i, CadenaGuardadora.get(l).size());
+                    //el +1 y el -4 están únicamente para resolver el archivo presenciaredes.csv
+                    excel.setModel(Modelo);
+                }
             }
 
             TableModel llenador = excel.getModel();
@@ -365,14 +382,16 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             menuboton = new JPopupMenu();
             menuS4 = new JMenu("Diferencia de Seguidores");
             menuIB1 = new JMenuItem("Twitter");
+            menuIB1.addActionListener(this);
             menuS4.add(menuIB1);
             menuIB2 = new JMenuItem("Diferencia de Visualizaciones de Youtube");
+            menuIB2.addActionListener(this);
             menuIB3 = new JMenuItem("Promedio de crecimiento (Twitter y Facebook)");
+            menuIB3.addActionListener(this);
             menuboton.add(menuS4);
             menuboton.add(menuIB2);
             menuboton.add(menuIB3);
 
-            //menuboton.show(boton4, x, y);
             menuboton.show(boton4, boton4.getBounds().x, boton4.getBounds().y);
             //MouseListener?????
             //Fin de Botón4
