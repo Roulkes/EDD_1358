@@ -312,39 +312,74 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         }
 
         if (d.getSource() == menuIB1) { //Diferencia de seguidores de Twitter.
+            int valEne = 0;
+            int valJun = 0;
+            int Final = 0;
 
-            //String PosTWITTER = "TWITTER";
-            //String PosEne = "SEGUIDORES (FOLLOWERS)";
-            /*int BuscadorEne = CadenaGuardadora.get(0).get(9)indexOf(PosTWITTER);
-            if (BuscadorEne != -1) {
-                System.out.println("La búsqueda está en el índice " + BuscadorEne);
-            } else {
-                System.out.println("El elemento no existe");
-            }*/
-            //for (int Sup = 0; Sup < CadenaGuardadora.size(); Sup++) {
-            //for (int Baj = 0; Baj < CadenaGuardadora.size(); Baj++) {
-            //}
-            //}
-            /*if (CadenaGuardadora.contains("TWITTER")) {
-                if (CadenaGuardadora.contains("SEGUIDORES")) {
-                    if (CadenaGuardadora.contains("ENERO")) {
-                        //PosEne = CadenaGuardadora.get(Sup).get(Baj);
-                        if (CadenaGuardadora.contains("JUNIO")) {
-                            //String PosJun = CadenaGuardadora.get(Sup).get(Baj);
-                            System.out.println("Si sirve");
-                            //System.out.println(PosEne + " + " + PosJun);
-                        } else {
-                            System.out.println("No existe elemento Junio.");
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("TWI"
+                        + "TTER") && k == 8) {
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+
+                        if (CadenaGuardadora.get(ks).get(1).contains("SEGUIDORES"
+                                + " (FOLLOWERS)")) {
+                            int Indice = ks;
+                            for (int j = 3; j < 9; j++) {
+                                if (CadenaGuardadora.get(0).get(j).contains("ENERO")) {
+                                    int Indice2 = j;
+                                    try {
+                                        valEne += Integer.parseInt(
+                                                CadenaGuardadora.get(
+                                                        Indice).get(Indice2).replace(
+                                                        ",", "").replace(
+                                                                "\"", ""));
+                                    } catch (NumberFormatException ex) {
+
+                                    }
+                                }
+                            }
                         }
-                    } else {
-                        System.out.println("No existe Enero.");
                     }
-                } else {
-                    System.out.println("No existe Seguidores.");
                 }
-            } else {
-                System.out.println("No existe Twitter.");
-            }*/
+            }
+
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("TWI"
+                        + "TTER") && k == 8) {
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+
+                        if (CadenaGuardadora.get(ks).get(1).contains("SEGUIDORES"
+                                + " (FOLLOWERS)")) {
+                            int Indice = ks;
+                            for (int j = 3; j < 9; j++) {
+                                if (CadenaGuardadora.get(0).get(j).contains("JUNIO")) {
+                                    int Indice2 = j;
+                                    try {
+                                        valJun += Integer.parseInt(
+                                                CadenaGuardadora.get(
+                                                        Indice).get(Indice2).replace(
+                                                        ",", "").replace(
+                                                                "\"", ""));
+                                    } catch (NumberFormatException ex) {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (valEne < valJun) {
+                Final = valJun - valEne;
+            }
+            if (valEne > valJun) {
+                Final = valEne - valJun;
+            }
+            infocsv.setBounds(5, 134, 440, 20);
+            infocsv2.setBounds(445, 134, 60, 20);
+            infocsv.setText("La diferencia de seguidores entre"
+                    + " enero y junio es de: ");
+            infocsv2.setText(Final + ".");
         }
 
         if (d.getSource() == menuIB2) { // Diferencia de visualizacionesde YT.
@@ -359,13 +394,11 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             for (int k = 0; k < CadenaGuardadora.size(); k++) {
                 if (CadenaGuardadora.get(k).get(0).contains("TWI"
                         + "TTER") && k == 8) {
-                    //int SumaT;
                     for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
 
                         if (CadenaGuardadora.get(ks).get(1).contains("CRECIMIE"
                                 + "NTO DE FOLLOWERS")) {
                             int Indice = ks;
-
                             for (int j = 3; j < 9; j++) {
                                 try {
                                     SumaT += Integer.parseInt(
@@ -374,6 +407,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                                                     ",", "").replace(
                                                             "\"", ""));
                                 } catch (NumberFormatException ex) {
+
                                 }
                             }
                         }
@@ -406,7 +440,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
             PromedioT = SumaT / 9;
             PromedioF = SumaF / 9;
-
+            infocsv.setBounds(5, 134, 440, 20);
+            infocsv2.setBounds(435, 134, 260, 20);
             infocsv.setText("El promedio de crecimiento en "
                     + "Twitter y Facebook es: ");
             infocsv2.setText(PromedioT + " y " + PromedioF
