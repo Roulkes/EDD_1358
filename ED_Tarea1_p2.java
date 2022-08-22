@@ -321,17 +321,21 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                         + "TTER") && k == 8) {
                     for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
 
-                        if (CadenaGuardadora.get(ks).get(1).contains("SEGUIDORES"
-                                + " (FOLLOWERS)")) {
+                        if (CadenaGuardadora.get(ks).get(1).contains("SEGUI"
+                                + "DORES (FOLLOWERS)")) {
                             int Indice = ks;
                             for (int j = 3; j < 9; j++) {
-                                if (CadenaGuardadora.get(0).get(j).contains("ENERO")) {
+                                if (CadenaGuardadora.get(0).get(j).contains(
+                                        "ENERO")) {
                                     int Indice2 = j;
                                     try {
                                         valEne += Integer.parseInt(
                                                 CadenaGuardadora.get(
-                                                        Indice).get(Indice2).replace(
-                                                        ",", "").replace(
+                                                        Indice).get(
+                                                                Indice2
+                                                        ).replace(
+                                                                ",", ""
+                                                        ).replace(
                                                                 "\"", ""));
                                     } catch (NumberFormatException ex) {
 
@@ -348,17 +352,21 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                         + "TTER") && k == 8) {
                     for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
 
-                        if (CadenaGuardadora.get(ks).get(1).contains("SEGUIDORES"
-                                + " (FOLLOWERS)")) {
+                        if (CadenaGuardadora.get(ks).get(1).contains(
+                                "SEGUIDORES (FOLLOWERS)")) {
                             int Indice = ks;
                             for (int j = 3; j < 9; j++) {
-                                if (CadenaGuardadora.get(0).get(j).contains("JUNIO")) {
+                                if (CadenaGuardadora.get(0).get(j).contains(
+                                        "JUNIO")) {
                                     int Indice2 = j;
                                     try {
                                         valJun += Integer.parseInt(
                                                 CadenaGuardadora.get(
-                                                        Indice).get(Indice2).replace(
-                                                        ",", "").replace(
+                                                        Indice).get(
+                                                                Indice2
+                                                        ).replace(
+                                                                ",", ""
+                                                        ).replace(
                                                                 "\"", ""));
                                     } catch (NumberFormatException ex) {
 
@@ -416,11 +424,13 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             }
 
             for (int k = 0; k < CadenaGuardadora.size(); k++) {
-                if (CadenaGuardadora.get(k).get(0).contains("FACEBOOK") && k == 1) {
+                if (CadenaGuardadora.get(k).get(0).contains("FACE"
+                        + "BOOK") && k == 1) {
                     //int SumaT;
                     for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
 
-                        if (CadenaGuardadora.get(ks).get(1).contains("CRECIMIENTO (seguidores)")) {
+                        if (CadenaGuardadora.get(ks).get(1).contains("CRECI"
+                                + "MIENTO (seguidores)")) {
                             int Indice = ks;
 
                             for (int j = 3; j < 9; j++) {
@@ -459,29 +469,36 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             filtro = new FileNameExtensionFilter("Archivos .csv", "csv");
             archivos.setFileFilter(filtro);
-            //Filtros siempre ponerlos antes de crear la ventana del "FileChooser".
+            //Filtros siempre ponerlos antes de crear la ventana del
+            //"FileChooser".
             archivos.showOpenDialog(null);
 
             fichero = archivos.getSelectedFile();
-            Path Ruta = fichero.toPath(); //Convierte el archivo en una ruta para leerlo.
+            Path Ruta = fichero.toPath(); //Convierte el archivo en una ruta
+            //para leerlo.
 
             //Muestra la ruta del archivo
             archi.setText("Ruta actual: " + archivos.getCurrentDirectory());
 
-            //Existe un error/bug/???? en donde se tiene que seleccionar dos veces el archivo para que se muestre completo.
+            //Existe un error/bug/???? en donde se tiene que seleccionar dos 
+            //veces el archivo para que se muestre completo.
             TableModel vaciador = excel.getModel();
             for (int j = 0; j <= CadenaGuardadora.size(); j++) {
                 for (int k = 0; k < CadenaGuardadora.size(); k++) {
-                    vaciador.setValueAt(CadenaGuardadora.remove(k).remove(j), k, j);//Valor del Array, Fila k, Columna j
+                    vaciador.setValueAt(
+                            CadenaGuardadora.remove(k).remove(j), k, j);
+                    //Valor del Array, Fila k, Columna j
                 }
             }
 
             try {
                 BufferedReader lector = Files.newBufferedReader(Ruta);
                 String leido;
-                while ((leido = lector.readLine()) != null) { //Leerá linea a linea hasta que no haya más que leer.
-                    //String[] OtraGuardadora = leido.split(","); //Guarda todo dividido por comas.
-                    String[] OtraGuardadora = leido.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                while ((leido = lector.readLine()) != null) {
+                    //Leerá linea a linea hasta que no haya más que leer.
+                    //Guarda todo dividido por comas.
+                    String[] OtraGuardadora = leido.split(
+                            ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     ArrayList<String> Pasaje = new ArrayList(); //Crea un
                     //Arraylist que guarda una linea completa, la pasa al Array
                     //que guarda todo (con el for mejorado) y posteriormente 
@@ -495,10 +512,11 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             }
 
             //LLenar la tabla.
-            for (int i = 0; i < CadenaGuardadora.size() + 1; i++) { //Crea filas.
+            for (int i = 0; i < CadenaGuardadora.size() + 1; i++) {
+                //Crea filas.
                 for (int l = 0; l < CadenaGuardadora.size(); l++) {
-                    Modelo = new DefaultTableModel(i, CadenaGuardadora.get(l).size());
-                    //el +1 y el -4 están únicamente para resolver el archivo presenciaredes.csv
+                    Modelo = new DefaultTableModel(
+                            i, CadenaGuardadora.get(l).size());
                     excel.setModel(Modelo);
                 }
             }
@@ -507,7 +525,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             for (int j = 0; j <= CadenaGuardadora.size(); j++) { //+4
                 for (int k = 0; k < CadenaGuardadora.size(); k++) {
                     //Imprime en la primer columna los datos del Outter Array.
-                    llenador.setValueAt(CadenaGuardadora.get(k).get(j), k, j);//Valor del Array, Fila k, Columna j
+                    llenador.setValueAt(CadenaGuardadora.get(k).get(j), k, j);
+                    //Valor del Array, Fila k, Columna j
                 }
             }
 
@@ -521,9 +540,11 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             menuIB1 = new JMenuItem("Twitter");
             menuIB1.addActionListener(this);
             menuS4.add(menuIB1);
-            menuIB2 = new JMenuItem("Diferencia de Visualizaciones de Youtube");
+            menuIB2 = new JMenuItem("Diferencia de Visualizaciones de "
+                    + "Youtube");
             menuIB2.addActionListener(this);
-            menuIB3 = new JMenuItem("Promedio de crecimiento (Twitter y Facebook)");
+            menuIB3 = new JMenuItem("Promedio de crecimiento (Twitter y "
+                    + "Facebook)");
             menuIB3.addActionListener(this);
             menuboton.add(menuS4);
             menuboton.add(menuIB2);
