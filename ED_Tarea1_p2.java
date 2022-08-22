@@ -27,7 +27,7 @@ import javax.swing.table.TableModel;
 
 public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
-    private JLabel label1, titulo, archi;
+    private JLabel label1, titulo, archi, infocsv, infocsv2;
     private JTextArea area1;
     private JScrollPane scroll1, scroll2;
     private JMenuBar menuB, menuB2;
@@ -131,6 +131,20 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         add(boton1);
         boton1.addActionListener(this);
 
+        infocsv = new JLabel("");
+        infocsv.setBounds(5, 134, 430, 20);
+        infocsv.setForeground(new Color(255, 255, 255));
+        infocsv.setFont(new Font("OCR A Extended", 0, 14));
+        infocsv.setVisible(false);
+        add(infocsv);
+
+        infocsv2 = new JLabel("");
+        infocsv2.setBounds(435, 134, 260, 20);
+        infocsv2.setForeground(new Color(255, 255, 255));
+        infocsv2.setFont(new Font("OCR A Extended", 0, 14));
+        infocsv2.setVisible(false);
+        add(infocsv2);
+
         boton4 = new JButton("Opciones");
         boton4.setBounds(780, 134, 180, 20);
         boton4.setFont(new Font("OCR A Extended", 0, 14));
@@ -200,6 +214,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton1.setVisible(false);
             boton4.setVisible(false);
             archi.setVisible(false);
+            infocsv.setVisible(false);
+            infocsv2.setVisible(false);
             scroll1.setVisible(true);
             scroll2.setVisible(false);
             area1.setText("La secretaría del Máximo Senado de la República y "
@@ -223,6 +239,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archi.setForeground(new Color(0, 0, 0));
             boton1.setForeground(new Color(0, 0, 0));
             boton1.setBackground(new Color(255, 255, 255));
+            infocsv.setForeground(new Color(0, 0, 0));
+            infocsv2.setForeground(new Color(0, 0, 0));
             boton4.setForeground(new Color(0, 0, 0));
             boton4.setBackground(new Color(255, 255, 255));
             area1.setForeground(new Color(0, 0, 0));
@@ -235,6 +253,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             archi.setForeground(new Color(255, 255, 255));
             boton1.setForeground(new Color(255, 255, 255));
             boton1.setBackground(new Color(60, 60, 60));
+            infocsv.setForeground(new Color(255, 255, 255));
+            infocsv2.setForeground(new Color(255, 255, 255));
             boton4.setForeground(new Color(255, 255, 255));
             boton4.setBackground(new Color(60, 60, 60));
             area1.setForeground(new Color(255, 255, 255));
@@ -248,6 +268,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton4.setVisible(false);
             scroll1.setVisible(true);
             archi.setVisible(false);
+            infocsv.setVisible(false);
+            infocsv2.setVisible(false);
             scroll2.setVisible(false);
             area1.setText("- Creado por:"
                     + "\n - Carlos Yael Tenorio Castilla"
@@ -281,6 +303,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         if (d.getSource() == menuI5) {
             titulo.setText("Urbenia | Con .csv");
             archi.setVisible(true);
+            infocsv.setVisible(true);
+            infocsv2.setVisible(true);
             scroll1.setVisible(false);
             scroll2.setVisible(true);
             boton1.setVisible(true);
@@ -289,19 +313,38 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         if (d.getSource() == menuIB1) { //Diferencia de seguidores de Twitter.
 
-            for (int Sup = 0; Sup < CadenaGuardadora.size(); Sup++) {
-                for (int Baj = 0; Baj < CadenaGuardadora.size(); Baj++) {
-                    if (CadenaGuardadora.contains("TWITTER")) {
-                        if (CadenaGuardadora.contains("SEGUIDORES")) {
-                            if (CadenaGuardadora.contains("ENERO")) {
-                                if (CadenaGuardadora.contains("JUNIO")) {
-                                    System.out.println("Si sirve");
-                                }
-                            }
+            //String PosTWITTER = "TWITTER";
+            //String PosEne = "SEGUIDORES (FOLLOWERS)";
+            /*int BuscadorEne = CadenaGuardadora.get(0).get(9)indexOf(PosTWITTER);
+            if (BuscadorEne != -1) {
+                System.out.println("La búsqueda está en el índice " + BuscadorEne);
+            } else {
+                System.out.println("El elemento no existe");
+            }*/
+            //for (int Sup = 0; Sup < CadenaGuardadora.size(); Sup++) {
+            //for (int Baj = 0; Baj < CadenaGuardadora.size(); Baj++) {
+            //}
+            //}
+            /*if (CadenaGuardadora.contains("TWITTER")) {
+                if (CadenaGuardadora.contains("SEGUIDORES")) {
+                    if (CadenaGuardadora.contains("ENERO")) {
+                        //PosEne = CadenaGuardadora.get(Sup).get(Baj);
+                        if (CadenaGuardadora.contains("JUNIO")) {
+                            //String PosJun = CadenaGuardadora.get(Sup).get(Baj);
+                            System.out.println("Si sirve");
+                            //System.out.println(PosEne + " + " + PosJun);
+                        } else {
+                            System.out.println("No existe elemento Junio.");
                         }
+                    } else {
+                        System.out.println("No existe Enero.");
                     }
+                } else {
+                    System.out.println("No existe Seguidores.");
                 }
-            }
+            } else {
+                System.out.println("No existe Twitter.");
+            }*/
         }
 
         if (d.getSource() == menuIB2) { // Diferencia de visualizacionesde YT.
@@ -309,6 +352,65 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         }
 
         if (d.getSource() == menuIB3) { //Promedio de crecimiento.
+            int SumaT = 0;
+            int SumaF = 0;
+            int PromedioT = 0;
+            int PromedioF = 0;
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("TWI"
+                        + "TTER") && k == 8) {
+                    //int SumaT;
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+
+                        if (CadenaGuardadora.get(ks).get(1).contains("CRECIMIE"
+                                + "NTO DE FOLLOWERS")) {
+                            int Indice = ks;
+
+                            for (int j = 3; j < 9; j++) {
+                                try {
+                                    SumaT += Integer.parseInt(
+                                            CadenaGuardadora.get(
+                                                    Indice).get(j).replace(
+                                                    ",", "").replace(
+                                                            "\"", ""));
+                                } catch (NumberFormatException ex) {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("FACEBOOK") && k == 1) {
+                    //int SumaT;
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+
+                        if (CadenaGuardadora.get(ks).get(1).contains("CRECIMIENTO (seguidores)")) {
+                            int Indice = ks;
+
+                            for (int j = 3; j < 9; j++) {
+                                try {
+                                    SumaF += Integer.parseInt(
+                                            CadenaGuardadora.get(
+                                                    Indice).get(j).replace(
+                                                    ",", "").replace(
+                                                            "\"", ""));
+                                } catch (NumberFormatException ex) {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            PromedioT = SumaT / 9;
+            PromedioF = SumaF / 9;
+
+            infocsv.setText("El promedio de crecimiento en "
+                    + "Twitter y Facebook es: ");
+            infocsv2.setText(PromedioT + " y " + PromedioF
+                    + " respectivamente.");
 
         }
         //Fin parte de menús

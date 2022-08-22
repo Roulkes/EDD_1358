@@ -84,8 +84,8 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == boton1) {
+    public void actionPerformed(ActionEvent d) {
+        if (d.getSource() == boton1) {
             Nombre = texto1.getText().trim();
             if (Nombre.equals("")) {
                 JOptionPane.showMessageDialog(null, "No hay usuario. Ingresa tu usuario.");
@@ -98,7 +98,7 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
                 this.setVisible(false);
             }
         }
-        if (e.getSource() == boton2) {
+        if (d.getSource() == boton2) {
             System.exit(0);
         }
     }
