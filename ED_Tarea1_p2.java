@@ -27,13 +27,13 @@ import javax.swing.table.TableModel;
 
 public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
-    private JLabel label1, titulo, archi, infocsv, infocsv2;
+    private JLabel label1, titulo, archi, infocsv;
     private JTextArea area1;
     private JScrollPane scroll1, scroll2;
     private JMenuBar menuB, menuB2;
     private JMenu menuS1, menuS2, menuS3, menuS4, menuS5;
-    private JMenuItem menuI1, menuI2, menuI3, menuI4, menuI5;
-    private JMenuItem menuIB1, menuIB2, menuIB3;
+    private JMenuItem menuI1, menuI2, menuI3, menuI4, menuI5, MENUIB1, MENUIB2;
+    private JMenuItem MENUIB3;
     private JSeparator dividendo;
     private JFileChooser archivos;
     private JTable excel;
@@ -132,18 +132,12 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         boton1.addActionListener(this);
 
         infocsv = new JLabel("");
-        infocsv.setBounds(5, 134, 430, 20);
+        infocsv.setBounds(5, 134, 775, 20);
         infocsv.setForeground(new Color(255, 255, 255));
         infocsv.setFont(new Font("OCR A Extended", 0, 14));
         infocsv.setVisible(false);
         add(infocsv);
 
-        infocsv2 = new JLabel("");
-        infocsv2.setBounds(435, 134, 260, 20);
-        infocsv2.setForeground(new Color(255, 255, 255));
-        infocsv2.setFont(new Font("OCR A Extended", 0, 14));
-        infocsv2.setVisible(false);
-        add(infocsv2);
 
         boton4 = new JButton("Opciones");
         boton4.setBounds(780, 134, 180, 20);
@@ -215,7 +209,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton4.setVisible(false);
             archi.setVisible(false);
             infocsv.setVisible(false);
-            infocsv2.setVisible(false);
             scroll1.setVisible(true);
             scroll2.setVisible(false);
             area1.setText("La secretaría del Máximo Senado de la República y "
@@ -240,7 +233,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton1.setForeground(new Color(0, 0, 0));
             boton1.setBackground(new Color(255, 255, 255));
             infocsv.setForeground(new Color(0, 0, 0));
-            infocsv2.setForeground(new Color(0, 0, 0));
             boton4.setForeground(new Color(0, 0, 0));
             boton4.setBackground(new Color(255, 255, 255));
             area1.setForeground(new Color(0, 0, 0));
@@ -254,7 +246,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             boton1.setForeground(new Color(255, 255, 255));
             boton1.setBackground(new Color(60, 60, 60));
             infocsv.setForeground(new Color(255, 255, 255));
-            infocsv2.setForeground(new Color(255, 255, 255));
             boton4.setForeground(new Color(255, 255, 255));
             boton4.setBackground(new Color(60, 60, 60));
             area1.setForeground(new Color(255, 255, 255));
@@ -269,7 +260,6 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             scroll1.setVisible(true);
             archi.setVisible(false);
             infocsv.setVisible(false);
-            infocsv2.setVisible(false);
             scroll2.setVisible(false);
             area1.setText("- Creado por:"
                     + "\n - Carlos Yael Tenorio Castilla"
@@ -304,14 +294,13 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             titulo.setText("Urbenia | Con .csv");
             archi.setVisible(true);
             infocsv.setVisible(true);
-            infocsv2.setVisible(true);
             scroll1.setVisible(false);
             scroll2.setVisible(true);
             boton1.setVisible(true);
             boton4.setVisible(true);
         }
 
-        if (d.getSource() == menuIB1) { //Diferencia de seguidores de Twitter.
+        if (d.getSource() == MENUIB1) { //Diferencia de seguidores de Twitter.
             int valEne = 0;
             int valJun = 0;
             int Final = 0;
@@ -379,22 +368,109 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             }
             if (valEne < valJun) {
                 Final = valJun - valEne;
-            }
-            if (valEne > valJun) {
+            } else {
                 Final = valEne - valJun;
             }
-            infocsv.setBounds(5, 134, 440, 20);
-            infocsv2.setBounds(445, 134, 60, 20);
+            infocsv.setBounds(5, 134, 775, 20);
             infocsv.setText("La diferencia de seguidores entre"
-                    + " enero y junio es de: ");
-            infocsv2.setText(Final + ".");
+                    + " enero y junio es de: " + Final + ".");
         }
 
-        if (d.getSource() == menuIB2) { // Diferencia de visualizacionesde YT.
+        if (d.getSource() == MENUIB2) { // Diferencia de visualizacionesde YT.
+            //- Permita calcular la diferencia de visualizaciones de YouTube 
+            //entre los meses seleccionados por teclado (enero a junio).
+
+            int valPM = 0;
+            int valSM = 0;
+            int OF = 0;
+
+            String primerM = JOptionPane.showInputDialog("Introduzca el mes "
+                    + "que será evaluado en mayúsculas:");
+            String segundoM = JOptionPane.showInputDialog("Introduzca el "
+                    + "segundo mes que será evaluado en mayúsculas:");
+
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("YOUTUBE") && k == 15) {
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+                        if (CadenaGuardadora.get(ks).get(1).contains("VISUALIZACIONES") && ks == 16) {
+                            int Indice = ks;
+                            for (int p = 3; p < 9; p++) {
+                                if (CadenaGuardadora.get(0).get(p).contains(primerM)) {
+                                    int IndicePM = p;
+                                    try {
+                                        valPM += Integer.parseInt(
+                                                CadenaGuardadora.get(
+                                                        Indice).get(
+                                                                IndicePM
+                                                        ).replace(
+                                                                ",", ""
+                                                        ).replace(
+                                                                "\"", ""));
+                                    } catch (NumberFormatException ex) {
+
+                                    }
+                                    System.out.println("Acá no se ha roto.");
+                                }
+                            }
+                        }
+                        System.out.println("Acá tampoco.");
+                    }
+                }
+                System.out.println("Acá nooooo.");
+            }
+
+            if (CadenaGuardadora.get(16).get(0).contains("YOUTUBE")) {
+                System.out.println("SI LO TENGOOOOO");
+            }
+
+            for (int k = 0; k < CadenaGuardadora.size(); k++) {
+                if (CadenaGuardadora.get(k).get(0).contains("YOUTUBE")
+                        && k == 15) {
+                    for (int ks = 0; ks < CadenaGuardadora.size(); ks++) {
+                        if (CadenaGuardadora.get(ks).get(1).contains(
+                                "VISUALIZACIONES") && ks == 16) {
+                            int Indice = ks;
+                            for (int p = 3; p < 10; p++) {
+                                if (CadenaGuardadora.get(0).get(p).contains(segundoM)) {
+                                    int IndiceSM = p;
+                                    try {
+                                        valSM += Integer.parseInt(
+                                                CadenaGuardadora.get(
+                                                        Indice).get(
+                                                                IndiceSM
+                                                        ).replace(
+                                                                ",", ""
+                                                        ).replace(
+                                                                "\"", ""));
+                                    } catch (NumberFormatException ex) {
+
+                                    }
+                                    System.out.println("Este es OTROROOROR");
+                                }
+                            }
+                            System.out.println("Me corto un huevo");
+                        }
+                    }
+                    System.out.println("MOAMDOAMSD");
+                }
+            }
+            
+            System.out.println("AL FIIIIIIIIIN");
+
+
+            if (valPM < valSM) {
+                OF = valSM - valPM;
+            } else {
+                OF = valPM - valSM;
+            }
+            infocsv.setBounds(5, 134, 775, 20);
+            infocsv.setText("La diferencia de visualizaciones entre los meses "
+                    + "de " + primerM + " y " + segundoM + " es de: " + OF 
+            + ".");
 
         }
 
-        if (d.getSource() == menuIB3) { //Promedio de crecimiento.
+        if (d.getSource() == MENUIB3) { //Promedio de crecimiento.
             int SumaT = 0;
             int SumaF = 0;
             int PromedioT = 0;
@@ -450,12 +526,10 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
             PromedioT = SumaT / 9;
             PromedioF = SumaF / 9;
-            infocsv.setBounds(5, 134, 440, 20);
-            infocsv2.setBounds(435, 134, 260, 20);
+            infocsv.setBounds(5, 134, 775, 20);
             infocsv.setText("El promedio de crecimiento en "
-                    + "Twitter y Facebook es: ");
-            infocsv2.setText(PromedioT + " y " + PromedioF
-                    + " respectivamente.");
+                    + "Twitter y Facebook es: " + PromedioT + " y " + PromedioF
+            + " respectivamente.");
 
         }
         //Fin parte de menús
@@ -537,18 +611,18 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             //Menu de Botón4
             menuboton = new JPopupMenu();
             menuS4 = new JMenu("Diferencia de Seguidores");
-            menuIB1 = new JMenuItem("Twitter");
-            menuIB1.addActionListener(this);
-            menuS4.add(menuIB1);
-            menuIB2 = new JMenuItem("Diferencia de Visualizaciones de "
+            MENUIB1 = new JMenuItem("Twitter");
+            MENUIB1.addActionListener(this);
+            menuS4.add(MENUIB1);
+            MENUIB2 = new JMenuItem("Diferencia de Visualizaciones de "
                     + "Youtube");
-            menuIB2.addActionListener(this);
-            menuIB3 = new JMenuItem("Promedio de crecimiento (Twitter y "
+            MENUIB2.addActionListener(this);
+            MENUIB3 = new JMenuItem("Promedio de crecimiento (Twitter y "
                     + "Facebook)");
-            menuIB3.addActionListener(this);
+            MENUIB3.addActionListener(this);
             menuboton.add(menuS4);
-            menuboton.add(menuIB2);
-            menuboton.add(menuIB3);
+            menuboton.add(MENUIB2);
+            menuboton.add(MENUIB3);
 
             menuboton.show(boton4, boton4.getBounds().x, boton4.getBounds().y);
             //MouseListener?????

@@ -29,7 +29,7 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
     public ED_Tarea1() {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Bienvenido");
+        setTitle("Bienvenida/o");
         getContentPane().setBackground(new Color(48, 48, 48));
 
         ImageIcon URB = new ImageIcon("C:\\Users\\yael_\\OneDrive\\"
