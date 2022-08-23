@@ -15,7 +15,11 @@ El archivo "URBENIAG.png" es ocuapada para la cabecera posterior al menú de la 
 // IMPORTANTE //
 De momento y a día de hoy 21 de agosto de 2022, el programa únicamente resuelve los pedido para el documento "presenciaredes.csv", no he encontrado manera de resolver esa parte pero funciona.
 
-Además, cabe recalcar que sí lee otros archivos.csv.
+Además, cabe recalcar que sí lee otros archivos.csv pero el botón "Opciones" no funciona en estos ya que no tiene ningún valor como el del ejercicio.
+
+// ARCHIVO .JAR //
+Metí ese archivo .jar ya que es la aplicación ya empaquetada y lista para su distribución, sé que mi código funciona pero al no tener la misma dirección de las imágenes, no sé qué tan bien funcionaría en otra computadora. Nunca lo he probado.
+Además la agregé para demostrar que de cualquiera de esas dos formas funciona, que mi aplicación es independiente de si NETBEANS (que fue donde programé) está abierto o no.
 
 // ERRORES CONOCIDOS //
 Al abrir un documento nuevo teniendo uno ya existente en la tabla, se debe seleccionar como mínimo dos vecces antes de que la tabla se llene bien pues esta deja las últimas dos lineas del archivo anterior y si el tamaño de columnas es mayor, tambien deja espacios en blanco (el tamañano de la tabla es el correcto pero deja la información anterior).
