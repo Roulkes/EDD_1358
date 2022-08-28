@@ -23,15 +23,15 @@ import java.util.ArrayList;
 public class Arreglos_ADT<T> {
 
     public static void main(String[] args) {
-        Arreglos_ADT febrero = new Arreglos_ADT(5);
-        febrero.setItem("Esdadsad", 0);
+        Arreglos_ADT febrero = new Arreglos_ADT(5); //Constructor
+        febrero.setItem("Esdadsad", 0); //Método setter
         febrero.setItem(1, 1);
         febrero.setItem("_", 2);
         febrero.setItem(333333, 3);
 
-        for (int p = 0; p < febrero.getLenght(); p++) {
+        for (int p = 0; p < febrero.getLenght(); p++) { //Método getLenght
             System.out.println("El elemento que se encuentra en el índice "
-                    + p + " es: " + febrero.getItem(p));
+                    + p + " es: " + febrero.getItem(p)); //Método getItem
         }
     }
 
