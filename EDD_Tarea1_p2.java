@@ -25,7 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class ED_Tarea1_p2 extends JFrame implements ActionListener {
+public class EDD_Tarea1_p2 extends JFrame implements ActionListener {
 
     private JLabel label1, titulo, archi, infocsv;
     private JTextArea area1;
@@ -50,11 +50,11 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     int x = Mouse.x;
     int y = Mouse.y;
 
-    public ED_Tarea1_p2() {
+    public EDD_Tarea1_p2() {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(48, 48, 48));
-        ED_Tarea1 VentanaPrincipal = new ED_Tarea1();
+        EDD_Tarea1 VentanaPrincipal = new EDD_Tarea1();
         NombreI = VentanaPrincipal.Nombre;
         setTitle("Bienvenida/o " + NombreI);
 
@@ -202,7 +202,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        ED_Tarea1_p2 inicio1 = new ED_Tarea1_p2();
+        EDD_Tarea1_p2 inicio1 = new EDD_Tarea1_p2();
         inicio1.setBounds(0, 0, 1000, 600);
         inicio1.setVisible(true);
         inicio1.setLocationRelativeTo(null);
@@ -684,7 +684,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         }
 
         if (d.getSource() == boton2) {
-            ED_Tarea1 inicio1 = new ED_Tarea1();
+            EDD_Tarea1 inicio1 = new EDD_Tarea1();
             inicio1.setBounds(0, 0, 300, 300);
             inicio1.setVisible(true);
             inicio1.setLocationRelativeTo(null);

@@ -19,14 +19,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ED_Tarea1 extends JFrame implements ActionListener {
+public class EDD_Tarea1 extends JFrame implements ActionListener {
 
     private JLabel label1, label2, label3;
     private JTextField texto1;
     private JButton boton1, boton2;
     public static String Nombre = "";
 
-    public ED_Tarea1() {
+    public EDD_Tarea1() {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Bienvenida/o");
@@ -75,7 +75,7 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        ED_Tarea1 Inicio = new ED_Tarea1();
+        EDD_Tarea1 Inicio = new EDD_Tarea1();
         Inicio.setBounds(0, 0, 300, 300);
         Inicio.setVisible(true);
         Inicio.setLocationRelativeTo(null);
@@ -90,7 +90,7 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
             if (Nombre.equals("")) {
                 JOptionPane.showMessageDialog(null, "No hay usuario. Ingresa tu usuario.");
             } else {
-                ED_Tarea1_p2 inicio1 = new ED_Tarea1_p2();
+                EDD_Tarea1_p2 inicio1 = new EDD_Tarea1_p2();
                 inicio1.setBounds(0, 0, 1000, 600);
                 inicio1.setVisible(true);
                 inicio1.setLocationRelativeTo(null);
