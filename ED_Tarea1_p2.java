@@ -29,11 +29,12 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
     private JLabel label1, titulo, archi, infocsv;
     private JTextArea area1;
-    private JScrollPane scroll1, scroll2;
-    private JMenuBar menuB, menuB2;
-    private JMenu menuS1, menuS2, menuS3, menuS4, menuS5;
-    private JMenuItem menuI1, menuI2, menuI3, menuI4, menuI5, MENUIB1, MENUIB2;
-    private JMenuItem MENUIB3;
+    private JTextPane panelweb;
+    private JScrollPane scroll1, scroll2, scroll3;
+    private JMenuBar menuB;
+    private JMenu menuS1, menuS2, menuS3, menuS4;
+    private JMenuItem menuI1, menuI2, menuI3, menuI4, menuI5, menuI6;
+    private JMenuItem MENUIB1, MENUIB2, MENUIB3;
     private JSeparator dividendo;
     private JFileChooser archivos;
     private JTable excel;
@@ -64,53 +65,59 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         menuS1 = new JMenu("Menu");
 
         //Opciones del menú
-        menuI1 = new JMenuItem("Información");
+        menuI1 = new JMenuItem("Urbenia");
         menuI1.addActionListener(this);
+
+        menuI2 = new JMenuItem("Información");
+        menuI2.addActionListener(this);
 
         menuS2 = new JMenu("Fondo");
 
-        menuI2 = new JMenuItem("Modo Claro");
-        menuI2.addActionListener(this);
-
-        menuI3 = new JMenuItem("Modo Oscuro");
+        menuI3 = new JMenuItem("Modo Claro");
         menuI3.addActionListener(this);
 
-        menuI4 = new JMenuItem("Créditos");
+        menuI4 = new JMenuItem("Modo Oscuro");
         menuI4.addActionListener(this);
+
+        menuI5 = new JMenuItem("Créditos");
+        menuI5.addActionListener(this);
 
         //Menu2
         menuS3 = new JMenu("Tareas");
 
         //Opciones del menú 2
-        menuI5 = new JMenuItem("Con .csv");
-        menuI5.addActionListener(this);
+        menuI6 = new JMenuItem("Con .csv");
+        menuI6.addActionListener(this);
 
         //Agregar todo el menú
         menuS1.add(menuI1);
         menuS1.addSeparator();
-        menuS1.add(menuS2);
-        menuS2.add(menuI2);
-        menuS2.add(dividendo);
-        menuS2.add(menuI3);
+        menuS1.add(menuI2);
         menuS1.addSeparator();
-        menuS1.add(menuI4);
+        menuS1.add(menuS2);
+        menuS2.add(menuI3);
+        menuS2.add(dividendo);
+        menuS2.add(menuI4);
+        menuS1.addSeparator();
+        menuS1.add(menuI5);
 
-        menuS3.add(menuI5);
+        menuS3.add(menuI6);
 
         menuB.add(menuS1);
         menuB.add(menuS3);
         setJMenuBar(menuB);
         //Fin del Menú
 
-        ImageIcon URB = new ImageIcon("C:\\Users\\yael_\\OneDrive\\Documentos"
-                + "\\NetBeansProjects\\Tarea1_Ejercicio_Redes_Sociales\\src\\"
-                + "main\\java\\tareaRedes\\URBENIAG.png");
+        ImageIcon URB = new ImageIcon("C:\\Users\\yael_\\OneDrive\\"
+                + "Documentos\\NetBeansProjects\\"
+                + "Tarea1_Ejercicio_Redes_Sociales\\src\\main\\java\\"
+                + "tareaRedes\\images\\URBENIAG.png");
         label1 = new JLabel(URB);
         label1.setBounds(4, 4, 976, 60);//Derecha, Abajo, Ancho, Alto
         add(label1);
 
-        titulo = new JLabel("Urbenia | Información");
-        titulo.setBounds(300, 70, 399, 30);
+        titulo = new JLabel("Urbenia");
+        titulo.setBounds(434, 70, 133, 30);
         titulo.setFont(new Font("OCR A Extended", 0, 31));
         titulo.setForeground(new Color(255, 255, 255));
         add(titulo);
@@ -122,8 +129,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         archi.setVisible(false);
         add(archi);
 
-        boton1 = new JButton("Escojer archivo...");
-        boton1.setBounds(780, 110, 180, 20);
+        boton1 = new JButton("Escoger archivo...");
+        boton1.setBounds(800, 110, 180, 20);
         boton1.setFont(new Font("OCR A Extended", 0, 14));
         boton1.setForeground(new Color(255, 255, 255));
         boton1.setBackground(new Color(60, 60, 60));
@@ -138,9 +145,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         infocsv.setVisible(false);
         add(infocsv);
 
-
         boton4 = new JButton("Opciones");
-        boton4.setBounds(780, 134, 180, 20);
+        boton4.setBounds(800, 134, 180, 20);
         boton4.setFont(new Font("OCR A Extended", 0, 14));
         boton4.setForeground(new Color(255, 255, 255));
         boton4.setBackground(new Color(60, 60, 60));
@@ -148,31 +154,35 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
         add(boton4);
         boton4.addActionListener(this);
 
-        area1 = new JTextArea();
-        area1.setEditable(false);
-        area1.setText("La secretaría del Máximo Senado de la República y "
-                + "el Gobierno de la Magnífica República"
-                + "\nde Urbenia te da una calurosa bienvenia a esta "
-                + "aplicación dónde podrás ir observado el "
-                + "\ndesarrollo de aplicaciones por Java de Carlos Yael "
-                + "y que en el futuro servirá como medio"
-                + "\npara fortalecer nuestra comunidad en crecimiento."
-                + "\n"
-                + "\n"
-                + "\nNo te olvides visitar nuestra página web en: "
-                + "nacionalurbenia.byethost6.com!");
-        area1.setFont(new Font("OCR A Extended", 0, 18));
-        area1.setForeground(new Color(255, 255, 255));
-        area1.setBackground(new Color(60, 60, 60));
-        scroll1 = new JScrollPane(area1);
+        panelweb = new JTextPane();
+        panelweb.setContentType("text/html");
+        panelweb.setEditable(false);
+        try {
+            panelweb.setPage("http://nacionalurbenia.byethost6.com");
+        } catch (IOException ex) {
+
+        }
+
+        scroll1 = new JScrollPane(panelweb);
         scroll1.setBounds(5, 110, 975, 402);
         add(scroll1);
 
-        excel = new JTable(filas, columnas);
-        scroll2 = new JScrollPane(excel);
-        scroll2.setBounds(5, 185, 975, 327);
+        area1 = new JTextArea();
+        area1.setEditable(false);
+        area1.setText("");
+        area1.setFont(new Font("OCR A Extended", 0, 18));
+        area1.setForeground(new Color(255, 255, 255));
+        area1.setBackground(new Color(60, 60, 60));
+        scroll2 = new JScrollPane(area1);
+        scroll2.setBounds(5, 110, 975, 402);
         scroll2.setVisible(false);
         add(scroll2);
+
+        excel = new JTable(filas, columnas);
+        scroll3 = new JScrollPane(excel);
+        scroll3.setBounds(5, 157, 975, 355);
+        scroll3.setVisible(false);
+        add(scroll3);
 
         boton2 = new JButton("Cerrar Sesión");
         boton2.setBounds(710, 515, 166, 20);
@@ -204,29 +214,70 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         //Inicio de menús
         if (d.getSource() == menuI1) {
+            titulo.setBounds(434, 70, 133, 30);
+            titulo.setText("Urbenia");
+            archi.setVisible(false);
+            infocsv.setVisible(false);
+            scroll1.setVisible(true);
+            scroll2.setVisible(false);
+            scroll3.setVisible(false);
+            boton1.setVisible(false);
+            boton4.setVisible(false);
+        }
+
+        if (d.getSource() == menuI2) {
+            titulo.setBounds(305, 70, 399, 30);
             titulo.setText("Urbenia | Información");
             boton1.setVisible(false);
             boton4.setVisible(false);
             archi.setVisible(false);
             infocsv.setVisible(false);
-            scroll1.setVisible(true);
-            scroll2.setVisible(false);
+            scroll1.setVisible(false);
+            scroll2.setVisible(true);
+            scroll3.setVisible(false);
             area1.setText("La secretaría del Máximo Senado de la República y "
                     + "el Gobierno de la Magnífica República"
                     + "\nde Urbenia te da una calurosa bienvenia a esta "
-                    + "aplicación dónde podrás ir observado el "
-                    + "\ndesarrollo de aplicaciones por Java de Carlos Yael "
-                    + "y que en el futuro servirá como medio"
-                    + "\npara fortalecer nuestra comunidad en crecimiento."
+                    + "aplicación con la finalidad de crear "
+                    + "\nun vínculo más estrecho entre el gobierno y tú.  "
+                    + "\n"
+                    + "\nPero, ¿Qué es Urbenia?"
+                    + "\nUrbenia es una nación fundada en 2019 por <Torrente> "
+                    + "y que desde entonces se ha ido "
+                    + "\nganando una increible popularidad."
+                    + "\n"
+                    + "\nUrbenia es, entre quienes conocen del tema, una "
+                    + "utipía socialista, masiva, culta y a la"
+                    + "\nvanguardia, con políticas sociales como el matrimonio "
+                    + "igualitario, la educación sexual"
+                    + "\ndesde temprana edad, castigos corporales ordenados a "
+                    + "los criminales, un toque de queda"
+                    + "\nnacional, chips de identificación sub-cutanea para "
+                    + "toda la población, consumo de drogas"
+                    + "\nrecreativas como el cannabis son legales y no menos "
+                    + "importante, sin armas de "
+                    + "\ndestrucción masiva."
                     + "\n"
                     + "\n"
-                    + "\nNo te olvides visitar nuestra página web en: "
-                    + "nacionalurbenia.byethost6.com!");
+                    + "\nAsi que, no te olvides visitar nuestra página web en: "
+                    + "nacionalurbenia.byethost6.com ó"
+                    + "\nconsultar más información en "
+                    + "www.nationstates.net/nation=urbenia."
+                    + "\n"
+                    + "\n"
+                    + "\n¡ÚNETENOS! ¿Qué esperas?."
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "\n"
+                    + "\n(Esta aplicación pertenece a Carlos Yael y será "
+                    + "ocupada posteriormente para realizar"
+                    + "\notros trabajos, estos pueden ser o no para la materia de ESTRUCTURA DE DATOS.)");
         }
 
         //menuI2 y menuI3 - Modifican el color del fondo
         Container fondo = this.getContentPane();
-        if (d.getSource() == menuI2) {
+        if (d.getSource() == menuI3) {
             fondo.setBackground(new Color(255, 255, 255));
             titulo.setForeground(new Color(0, 0, 0));
             archi.setForeground(new Color(0, 0, 0));
@@ -239,7 +290,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             area1.setBackground(new Color(255, 255, 255));
         }
 
-        if (d.getSource() == menuI3) {
+        if (d.getSource() == menuI4) {
             fondo.setBackground(new Color(48, 48, 48));
             titulo.setForeground(new Color(255, 255, 255));
             archi.setForeground(new Color(255, 255, 255));
@@ -253,14 +304,16 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         }
 
-        if (d.getSource() == menuI4) {
+        if (d.getSource() == menuI5) {
+            titulo.setBounds(321, 70, 342, 30);
             titulo.setText("Urbenia | Créditos");
             boton1.setVisible(false);
             boton4.setVisible(false);
-            scroll1.setVisible(true);
+            scroll1.setVisible(false);
+            scroll2.setVisible(true);
+            scroll3.setVisible(false);
             archi.setVisible(false);
             infocsv.setVisible(false);
-            scroll2.setVisible(false);
             area1.setText("- Creado por:"
                     + "\n - Carlos Yael Tenorio Castilla"
                     + " para la materia de POO y posteriormente "
@@ -290,12 +343,14 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
 
         }
 
-        if (d.getSource() == menuI5) {
+        if (d.getSource() == menuI6) {
+            titulo.setBounds(321, 70, 342, 30);
             titulo.setText("Urbenia | Con .csv");
             archi.setVisible(true);
             infocsv.setVisible(true);
             scroll1.setVisible(false);
-            scroll2.setVisible(true);
+            scroll2.setVisible(false);
+            scroll3.setVisible(true);
             boton1.setVisible(true);
             boton4.setVisible(true);
         }
@@ -454,9 +509,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
                     System.out.println("MOAMDOAMSD");
                 }
             }
-            
-            System.out.println("AL FIIIIIIIIIN");
 
+            System.out.println("AL FIIIIIIIIIN");
 
             if (valPM < valSM) {
                 OF = valSM - valPM;
@@ -465,8 +519,8 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             }
             infocsv.setBounds(5, 134, 775, 20);
             infocsv.setText("La diferencia de visualizaciones entre los meses "
-                    + "de " + primerM + " y " + segundoM + " es de: " + OF 
-            + ".");
+                    + "de " + primerM + " y " + segundoM + " es de: " + OF
+                    + ".");
 
         }
 
@@ -529,7 +583,7 @@ public class ED_Tarea1_p2 extends JFrame implements ActionListener {
             infocsv.setBounds(5, 134, 775, 20);
             infocsv.setText("El promedio de crecimiento en "
                     + "Twitter y Facebook es: " + PromedioT + " y " + PromedioF
-            + " respectivamente.");
+                    + " respectivamente.");
 
         }
         //Fin parte de menús

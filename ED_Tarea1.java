@@ -35,7 +35,7 @@ public class ED_Tarea1 extends JFrame implements ActionListener {
         ImageIcon URB = new ImageIcon("C:\\Users\\yael_\\OneDrive\\"
                 + "Documentos\\NetBeansProjects\\"
                 + "Tarea1_Ejercicio_Redes_Sociales\\src\\main\\java\\"
-                + "tareaRedes\\URBENIAC.png");
+                + "tareaRedes\\images\\URBENIAC.png");
         label1 = new JLabel(URB);
         label1.setBounds(4, 4, 276, 33);//Derecha, Abajo, Ancho, Alto
         add(label1);
