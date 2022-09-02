@@ -27,8 +27,14 @@ public class Arreglos_ADT<T> {
         febrero.setItem("Esdadsad", 0);
         febrero.setItem(1, 1);
         febrero.setItem("_", 2);
-        febrero.setItem(333333, 3);
+        febrero.setItem(333333, 4);
 
+        for (int p = 0; p < febrero.getLenght(); p++) {
+            System.out.println("El elemento que se encuentra en el índice "
+                    + p + " es: " + febrero.getItem(p));
+        }
+
+        febrero.clear("Coca Cola");
         for (int p = 0; p < febrero.getLenght(); p++) {
             System.out.println("El elemento que se encuentra en el índice "
                     + p + " es: " + febrero.getItem(p));
@@ -56,6 +62,8 @@ public class Arreglos_ADT<T> {
     public void setItem(T Elemento, int Indice) { //Setter
         if (Indice >= 0 && Indice < this.rozmiar) {
             datos.set(Indice, Elemento);
+        } else {
+            System.out.println("No existe tal indice en este arreglo.");
         }
     }
 
