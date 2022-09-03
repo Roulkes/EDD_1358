@@ -24,9 +24,9 @@ public class Arreglos_ADT<T> {
 
     public static void main(String[] args) {
         Arreglos_ADT febrero = new Arreglos_ADT(5);
-        febrero.setItem("Esdadsad", 0);
+        febrero.setItem(0, "Esdadsad");
         febrero.setItem(1, 1);
-        febrero.setItem("_", 2);
+        febrero.setItem(2, "_");
         febrero.setItem(333333, 4);
 
         for (int p = 0; p < febrero.getLenght(); p++) {
@@ -59,7 +59,7 @@ public class Arreglos_ADT<T> {
         return null;
     }
 
-    public void setItem(T Elemento, int Indice) { //Setter
+    public void setItem(int Indice, T Elemento) { //Setter
         if (Indice >= 0 && Indice < this.rozmiar) {
             datos.set(Indice, Elemento);
         } else {

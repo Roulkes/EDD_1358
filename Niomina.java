@@ -18,11 +18,14 @@ public class Niomina {
         File Arch = new File("C:/Users/yael_/OneDrive/Escritorio/julio.dat"); //Sirve con "julio.dat" pero no con "junio.dat"??????
         Niomina Prueba = new Niomina(Arch);
     }
+    int rozmiar = 0;
+    int TamLis;
     String LineasL = "";
     String Cortadora1 = "";
-    int rozmiar = 0;
+    String[] Final;
     String[] Lineas;
     String[] Tempo;
+    Empleado Ya;
 
     public Niomina(File Arch) {
         try {
@@ -33,27 +36,60 @@ public class Niomina {
             while ((Leido = lector.readLine()) != null) {
                 Lineas = Leido.split("\n");
                 rozmiar += Lineas.length;
+                LineasL += Arrays.toString(Lineas);
+                //System.out.println(Lineas[0]);
             }
-            Arreglos_ADT Lista_plac = new Arreglos_ADT(rozmiar - 1); //Constructor del arreglo.
+            
+            for (int Corr = 0; Corr < rozmiar; Corr++){
+                Final = LineasL.split(",");
+                Cortadora1 += Arrays.toString(Final);
+            }
+            System.out.println(Cortadora1);
+            
+            Arreglos_ADT Infierno = new Arreglos_ADT(rozmiar);
+            for (int Cor = 0; Cor < rozmiar; Cor++) {
+                Infierno.setItem(Cor, LineasL);
+                //System.out.println(Infierno.getItem(Cor));
+            }
+
+
+            //Esta parte es para asignar los valores al ADT Empleado
+            /*Arreglos_ADT Lista_plac = new Arreglos_ADT(rozmiar - 1); //Constructor del arreglo.
             for (int Indi = 0; Indi < rozmiar - 1; Indi++) {
                 Tempo = Arrays.toString(Lineas).split(",");
-                Empleado EmpTemp = new Empleado(int (Tempo.toString().charAt(0)),
-                Tempo.toString().charAt(1), 
-                Tempo.toString().charAt(2),
-                Tempo.toString().charAt(3), 
-                int (Tempo.toString().charAt(4)),
-                int (Tempo.toString().charAt(5)),
-                int (Tempo.toString().charAt(6)));
-                Lista_plac.setElemento(Indi, EmpTemp);
+                String Cadena = Arrays.toString(Tempo);
+                /*Empleado Ya = new Empleado(int (Cadena.charAt(0)
+                ), Cadena.charAt(1)
+                , Cadena.charAt(2)
+                , Cadena.charAt(3), int (Cadena.charAt(4)), int (Cadena.charAt(5)), int (Cadena.charAt(6)
+                ));
+                Lista_plac.setItem(Ya, Indi);
             }
-            System.out.print(Lista_plac);
-            /*if (rozmiar > 0){
-                System.out.println("Si está funcionando " + rozmiar);
-            }*/
-            //System.out.println("Akgi oafisaidfsa");
-
+            TamLis = Lista_plac.getLenght();
+            Empleado No = new Empleado(5, "Cosa", "Casa", "Mort", 1, 23000, 1666);
+            System.out.print(No.to_String());*/
         } catch (IOException ex) {
         }
 
     }
+
+    /*public String Lista_Sueldos() {
+        for (int rozmiarS = 0; rozmiarS < TamLis; rozmiarS++) {
+            Emp = Ya.getItem(rozmiarS);
+            System.out.println("Id: " + Emp.get_NumTrabajador() + ", Sueldo: " + Emp.CalcularSueldo);
+        }
+    }*/
+
+ /*public String Mayor_Ant() {
+        int Max = 2023;
+        int Indice = 0;
+        for (int ind = 0; ind < TamLis; ind++) {
+            Emp = Ya.getItem(ind);
+            if (Emp.get_AñoIngreso() < Max) {
+                Indice = ind;
+                Max = Emp.get_AñoIngreso();
+            }
+        }
+        return Ya.getItem(ind);
+    }*/
 }
