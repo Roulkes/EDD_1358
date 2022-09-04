@@ -20,15 +20,13 @@ public class Niomina {
         Prueba.Lista_Sueldos();
     }
     int rozmiar = 0;
-    int TamLis;
     String LineasL = "";
     ArrayList<ArrayList<String>> OutterArray = new ArrayList();
     Arreglos_ADT Nomina;
-    Empleado VerEmp;
-    String[] Final;
     String[] Lineas;
-    String[] Tempo;
+    String[] TamLis;
     Empleado Emp;
+    Empleado CEmp;
 
     public Niomina(File Arch) { //Constructor
         try {
@@ -38,7 +36,8 @@ public class Niomina {
 
             while ((Leido = lector.readLine()) != null) {
                 Lineas = Leido.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                rozmiar += Lineas.length;
+                TamLis = Leido.split("\n");
+                rozmiar += TamLis.length;
                 ArrayList<String> InnerArray = new ArrayList();
                 for (String datos : Lineas) {
                     InnerArray.add(datos);
@@ -47,13 +46,12 @@ public class Niomina {
             }
 
             //Esta parte es para asignar los valores al ADT Empleado
-            Nomina = new Arreglos_ADT(rozmiar);
-
+            Nomina = new Arreglos_ADT(rozmiar - 1);
+            int Columnas = 0;
             for (int Filas = 1; Filas < OutterArray.size(); Filas++) {
-                for (int Columnas = 0; Columnas < OutterArray.size(); Columnas++) {
-                    Emp = new Empleado(Integer.parseInt(OutterArray.get(Filas).get(0)), OutterArray.get(Filas).get(1), OutterArray.get(Filas).get(2), OutterArray.get(Filas).get(3), Integer.parseInt(OutterArray.get(Filas).get(4)), Integer.parseInt(OutterArray.get(Filas).get(5)), Integer.parseInt(OutterArray.get(Filas).get(6)));
-                    Nomina.setItem(Columnas, Emp);
-                }
+                Emp = new Empleado(Integer.parseInt(OutterArray.get(Filas).get(0)), OutterArray.get(Filas).get(1), OutterArray.get(Filas).get(2), OutterArray.get(Filas).get(3), Integer.parseInt(OutterArray.get(Filas).get(4)), Integer.parseInt(OutterArray.get(Filas).get(5)), Integer.parseInt(OutterArray.get(Filas).get(6)));
+                Nomina.setItem(Columnas, Emp);
+                Columnas++;
             }
         } catch (IOException ex) {
         }
@@ -62,21 +60,21 @@ public class Niomina {
 
     public void Lista_Sueldos() {
         for (int rozmiarS = 0; rozmiarS < Nomina.getLenght(); rozmiarS++) {
-            CEmp = Nomina.getItem(rozmiarS);
-            System.out.println("Id: " + CEmp.get_NumTrabajador() + ", Sueldo: " + CEmp.CalcularSueldo());
+            Nomina.getItem(rozmiarS);
+            System.out.println("Id: " + Emp.get_NumTrabajador() + ", Sueldo: " + Emp.CalcularSueldo());
         }
     }
 
-    /*public String Mayor_Ant() {
+    /*public Arreglos_ADT Mayor_Ant() {
         int Max = 2023;
         int Indice = 0;
         for (int ind = 0; ind < TamLis; ind++) {
-            Emp = Ya.getItem(ind);
-            if (Emp.get_AñoIngreso() < Max) {
+            //CEmp = Nomina.getItem(ind);
+            if (CEmp.get_AñoIngreso() < Max) {
                 Indice = ind;
-                Max = Emp.get_AñoIngreso();
+                Max = CEmp.get_AñoIngreso();
             }
         }
-        return Ya.getItem(ind);
+        //return Nomina.getItem(Indice);
     }*/
 }
